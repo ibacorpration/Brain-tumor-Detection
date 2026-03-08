@@ -1,10 +1,9 @@
-import io
 from pathlib import Path
-
 import numpy as np
 import streamlit as st
 from PIL import Image
 from tensorflow.keras.models import load_model
+import io
 
 st.set_page_config(
     page_title="Brain Tumor Detection",
@@ -24,8 +23,6 @@ CANDIDATES = [
     BASE_DIR.parent / "models" / "brain tumor_efficientnet_model.keras",
 ]
 
-# Model loader (cached)
-
 @st.cache_resource(show_spinner=False)
 def get_model():
     for p in CANDIDATES:
@@ -37,15 +34,12 @@ def get_model():
         "\n".join([f"  - {p}" for p in CANDIDATES])
     )
 
-
-
 def preprocess_image(uploaded_bytes: bytes) -> np.ndarray:
     img = Image.open(io.BytesIO(uploaded_bytes)).convert("RGB")
     img = img.resize((IMAGE_SIZE, IMAGE_SIZE))
     x = np.asarray(img, dtype=np.float32) / 255.0
     x = np.expand_dims(x, axis=0)
     return x, img
-
 
 def predict_tumor(x: np.ndarray):
     model = get_model()
@@ -64,6 +58,7 @@ def predict_tumor(x: np.ndarray):
 # ----------------------------
 # UI
 # ----------------------------
+
 st.title("🧠 Brain Tumor Detection")
 st.caption("Upload an MRI image and the model will predict the tumor type (or no tumor).")
 
@@ -105,7 +100,6 @@ st.subheader("Result")
 st.write(f"**{result}**")
 st.write(f"Confidence: **{confidence * 100:.2f}%**")
 
-# Probabilities
 st.subheader("Class probabilities")
 prob_table = {label: float(p) for label, p in zip(CLASS_LABELS, probs)}
 st.bar_chart(prob_table)
@@ -113,3 +107,4 @@ st.bar_chart(prob_table)
 # Top-2 quick view
 top2 = sorted(prob_table.items(), key=lambda kv: kv[1], reverse=True)[:2]
 st.caption("Top predictions: " + " • ".join([f"{k}: {v*100:.2f}%" for k, v in top2]))
+
