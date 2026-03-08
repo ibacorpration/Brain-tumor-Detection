@@ -23,7 +23,7 @@ The model classifies MRI brain scans into four categories:
 
 #📊 Model Performance
 
-- Test Accuracy: 94.63%
+- Test Accuracy: 92.37%
   
 ---
 
