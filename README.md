@@ -10,7 +10,7 @@ The goal of this project is to assist in early detection of brain tumors and sup
 The trained model analyzes MRI images and predicts whether a tumor exists and identifies its type.
 
 ---
-#🧬 Tumor Classes
+# 🧬 Tumor Classes
 
 The model classifies MRI brain scans into four categories:
 
@@ -21,13 +21,13 @@ The model classifies MRI brain scans into four categories:
 
 ---
 
-#📊 Model Performance
+# 📊 Model Performance
 
 - Test Accuracy: 92.37%
   
 ---
 
-- 🖼️ Brain Tumor MRI Example
+# 🖼️ Brain Tumor MRI Example
 
   <p align="center">
   <img src="https://github.com/user-attachments/assets/ee145e07-2fcd-417f-8045-55b0a204af85" width="650"/>
@@ -43,7 +43,7 @@ The dataset contains **MRI images of brain scans** categorized into four classes
 
 ---
 
-#👨‍💻 Author
+# 👨‍💻 Author
 
 Ibrahem Sayed
 AI Engineer | Computer Vision Engineer
